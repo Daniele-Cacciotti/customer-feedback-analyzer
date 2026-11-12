@@ -1,0 +1,7 @@
+target/
+.env
+*.log
+.vscode/
+.idea/
+*.iml
+sentiment_feedback_output.txt

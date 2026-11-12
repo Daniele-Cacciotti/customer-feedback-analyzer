@@ -1,0 +1,35 @@
+Feedback #1
+Customer: Demo Customer 01
+Department: Customer Service
+Date: 2026-11-01
+Comment: The support team was wonderful and helped me immediately.
+
+Feedback #2
+Customer: Demo Customer 02
+Department: Delivery
+Date: 2026-11-02
+Comment: The parcel arrived late and the box was badly damaged.
+
+Feedback #3
+Customer: Demo Customer 03
+Department: Online Store
+Date: 2026-11-03
+Comment: I collected my order at the counter.
+
+Feedback #4
+Customer: Demo Customer 04
+Department: Customer Service
+Date: 2026-11-04
+Comment: The staff were kind and made the return quick and easy.
+
+Feedback #5
+Customer: Demo Customer 05
+Department: Online Store
+Date: 2026-11-05
+Comment: The checkout page crashed twice before I could finish paying.
+
+Feedback #6
+Customer: Demo Customer 06
+Department: Delivery
+Date: 2026-11-06
+Comment: The courier delivered the package on the scheduled day.
