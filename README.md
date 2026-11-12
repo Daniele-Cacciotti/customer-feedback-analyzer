@@ -17,36 +17,39 @@ Customer Feedback Analyzer turns retail comments into a dashboard of sentiment, 
 
 Install **Java 21** and **Maven**. Run these commands from the repository root. The sample input contains six fictional retail comments. The first Maven run downloads the CoreNLP model and other dependencies.
 
-~~~bash
-(
-  cd customer-service-platform
-  mvn -ntp compile org.codehaus.mojo:exec-maven-plugin:3.7.0:java \
-    -Dexec.mainClass=com.retailstore.feedback.SentimentAnalyzer \
-    '-Dexec.args=store_feedback.txt ../feedback-service/sentiment_feedback_output.txt'
-)
-~~~
-
-The analyzer writes its output directly into the Spring Boot project's working directory. You can override the dashboard's input path with the `SENTIMENT_FILE` environment variable.
+### Generate and copy the sentiment report
 
 ~~~bash
-cd feedback-service
-mvn -ntp spring-boot:run
+cd customer-service-platform
+mvn -ntp compile exec:java -Dexec.mainClass=com.retailstore.feedback.SentimentAnalyzer && \
+  cp sentiment_feedback_output.txt ../feedback-service/
 ~~~
 
-Open the dashboard after the app starts. [Local dashboard](http://127.0.0.1:8080/)
+Repeat this step when you change the sample feedback. The dashboard reads the copy in `feedback-service` by default. Set `SENTIMENT_FILE` to use a different report.
 
-The dashboard works with local sentiment and department totals without an API key. Gemini categories and insights become available when you configure a key. Chart.js and Bootstrap load from a CDN.
+### Start the dashboard
 
-### Enable Gemini enrichment
+Switch to the Spring Boot project in the same terminal.
 
-Set `GEMINI_API_KEY` in the environment of the terminal that starts Spring Boot. In Bash, you can enter it without echoing it or putting it in the command history.
+~~~bash
+cd ../feedback-service
+~~~
+
+To enable Gemini categories and insights, enter and export your API key in Bash before starting Spring Boot. Bash hides the key as you paste it.
 
 ~~~bash
 read -rsp 'Gemini API key: ' GEMINI_API_KEY
 printf '\n'
 export GEMINI_API_KEY
+~~~
+
+Start Spring Boot from that terminal.
+
+~~~bash
 mvn -ntp spring-boot:run
 ~~~
+
+Open the dashboard after the app starts. Without a key, it still shows sentiment and department totals. Chart.js and Bootstrap load from a CDN. [Local dashboard](http://127.0.0.1:8080/)
 
 The default model is `gemini-3.1-flash-lite`. Set `GEMINI_MODEL` to use another Gemini model that supports structured output. The app sends each comment, department, and sentiment to Gemini on the first request. Use synthetic or appropriately anonymized feedback when enabling enrichment.
 
